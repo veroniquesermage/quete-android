@@ -18,11 +18,6 @@ public class Inflater {
   // Activity context
   private Context ctx;
 
-  //
-  // INFO WCS - enum
-  // https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
-  enum INFLATE_TYPE { ASSETS, RAW }
-
   // Constructor should only contains initialisation
   Inflater(Context ctx) {
     this.ctx = ctx;
@@ -31,29 +26,15 @@ public class Inflater {
   /**
    * This method parse the xml layout to populate the activity screen
    * @param pParent Parent layout
-   * @param pType Inflate type
    * @throws IOException
    * @throws XmlPullParserException
    */
-  public void inflate(ViewGroup pParent, INFLATE_TYPE pType) throws IOException, XmlPullParserException {
-    // INFO WCS - throw vs throws
-    // https://beginnersbook.com/2013/04/difference-between-throw-and-throws-in-java/
-
+  public void inflate(ViewGroup pParent) throw IOException, XmlPullParserException {
     // Store the parent
     ViewGroup lParentView = pParent;
 
-    InputStream lXmlStream;
-    if (pType == INFLATE_TYPE.ASSETS) {
-      // INFO WCS - Here is how to keep a file from the assets directory
-      lXmlStream = this.ctx.getAssets().open("content_assets.xml");
-    } else {
-      // INFO WCS - Here is how to keep a file from the raw directory
-      lXmlStream = this.ctx.getResources().openRawResource(R.raw.content_raw);
-    }
-
-    // INFO WCS - XML and XmlPullParser
-    // XML - https://developer.android.com/reference/android/util/Xml
-    // XmlPullParser - https://developer.android.com/reference/org/xmlpull/v1/XmlPullParser
+    // INFO WCS - Here is how to keep a file from the assets directory
+    InputStream lXmlStream = this.ctx.getAssets().open("content_assets.xml");
 
     // XML parser initialization
     XmlPullParser parser = Xml.newPullParser();

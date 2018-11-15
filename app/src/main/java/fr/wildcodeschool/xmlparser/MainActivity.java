@@ -26,16 +26,11 @@ public class MainActivity extends AppCompatActivity {
     // Parent Layout
     ViewGroup lParentView = this.findViewById(R.id.mainLayout);
 
-    //
-    // INFO WCS - try catch finally blocks
-    // https://beginnersbook.com/2013/04/try-catch-in-java/
     try {
       Inflater lXmlInflater = new Inflater(this);
-      lXmlInflater.inflate(lParentView, Inflater.INFLATE_TYPE.ASSETS);
-    } catch (IOException e) {
-      Log.e("ERROR PARSER", e.getMessage());
-    } catch (XmlPullParserException e) {
-      Log.e("ERROR PARSER", e.getMessage());
+      lXmlInflater.inflate(lParentView);
+    } catch (IOException | XmlPullParserException  e) {
+      Log.e("PARSER ERROR", e.getMessage());
     }
   }
 

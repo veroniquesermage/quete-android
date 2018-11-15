@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class LayoutManager {
   // Log TAG definition
-  static final String TAG = "LayoutManager";
+  private static final String TAG = "LayoutManager";
 
   /**
    * Manage the layout attribute
@@ -24,7 +24,7 @@ public class LayoutManager {
    * @return The attributes not treated by the method stored in a HashMap.
    */
   static public HashMap<String, String> setLayoutParams(View pView, XmlPullParser pParser) {
-    HashMap<String, String> NodeAttr = new HashMap<>();
+    HashMap<String, String> nodeAttr = new HashMap<>();
 
     int width = LinearLayout.LayoutParams.MATCH_PARENT;
     int height = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -54,8 +54,6 @@ public class LayoutManager {
             break;
           case "layout_marginHorizontal":
           case "layout_marginVertical":
-            // INFO WCS - Pattern and Matcher
-            // https://developer.android.com/reference/java/util/regex/Pattern
             Pattern pattern = Pattern.compile("([1-9]*)([a-z]*)");
             Matcher matcher = pattern.matcher(value);
             if (matcher.find())
@@ -79,7 +77,7 @@ public class LayoutManager {
             // TODO - Add gravity
             break;
           default:
-            NodeAttr.put(key, value);
+            nodeAttr.put(key, value);
             break;
         }
       }
@@ -90,7 +88,8 @@ public class LayoutManager {
     layoutParams.weight = weight;
     layoutParams.gravity = gravity;
     pView.setLayoutParams(layoutParams);
-    return NodeAttr;
+
+    return nodeAttr;
   }
 
   /**
@@ -102,9 +101,9 @@ public class LayoutManager {
   static private int convertToPixel(String value, String unit) {
     DisplayMetrics displayMetric = MainActivity.getAppContext().getResources().getDisplayMetrics();
 
-    int num = 0, pixel = 0;
+    int pixel = 0;
     try {
-      num = Integer.getInteger(value);
+      int num = Integer.getInteger(value);
       switch (unit) {
         case "px":
           pixel = num;
