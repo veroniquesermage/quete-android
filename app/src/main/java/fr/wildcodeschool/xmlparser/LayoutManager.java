@@ -33,6 +33,8 @@ public class LayoutManager {
     int marginH = 0;
     int marginV = 0;
 
+
+
     String key, value;
     int lCount = pParser.getAttributeCount();
     for (int lIndex = 0; lIndex < lCount; lIndex++) {
@@ -53,8 +55,19 @@ public class LayoutManager {
             }
             break;
           case "layout_marginHorizontal":
+              Pattern pattern1 = Pattern.compile("([0-9]*)([a-z]*)");
+              Matcher matcher1 = pattern1.matcher(value);
+              if (matcher1.find())
+              {
+                  int px = convertToPixel(matcher1.group(1), matcher1.group(2));
+                  if (key.equals("layout_marginHorizontal")) {
+                      marginV = px;
+                  } else {
+                      marginH = px;
+                  }
+              }
           case "layout_marginVertical":
-            Pattern pattern = Pattern.compile("([1-9]*)([a-z]*)");
+            Pattern pattern = Pattern.compile("([0-9]*)([a-z]*)");
             Matcher matcher = pattern.matcher(value);
             if (matcher.find())
             {
@@ -74,7 +87,9 @@ public class LayoutManager {
             }
             break;
           case "layout_gravity":
-            // TODO - Add gravity
+              if ("center_horizontal".equals(value)) {
+                  gravity = Gravity.CENTER_HORIZONTAL;
+              }
             break;
           default:
             nodeAttr.put(key, value);
