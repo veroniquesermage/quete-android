@@ -1,21 +1,30 @@
 package fr.wildcodeschool.xmlparser.wildView;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-
-import fr.wildcodeschool.xmlparser.ViewBuilder;
 
 public class WildButtonBuilder implements ViewBuilder {
 
+    // Log TAG definition
     private static final String TAG = "WildButton";
-    private Button button;
 
+    private AppCompatButton button;
+
+    /**
+     * Constructor
+     * @param ctx Activity context
+     */
     public WildButtonBuilder(Context ctx) {
-        button = new Button(ctx);
+        button = new AppCompatButton( ctx );
     }
 
+    /**
+     * Populate the view with the attribute value
+     * @param key The key of xml attribute
+     * @param value The value of xml attribute
+     */
     @Override
     public void setAttribute(String key, String value) {
         switch (key) {
@@ -23,7 +32,7 @@ public class WildButtonBuilder implements ViewBuilder {
                 button.setText(value);
                 break;
             case "gravity":
-
+                button.setGravity( Integer.parseInt( value ) );
                 break;
             case "id":
                 /* Nothing to do */
@@ -38,4 +47,6 @@ public class WildButtonBuilder implements ViewBuilder {
     public View getBuildView() {
         return button;
     }
+
+
 }

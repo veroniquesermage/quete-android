@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import fr.wildcodeschool.xmlparser.ViewBuilder;
-
 public class WildEditTextWilder implements ViewBuilder {
 
     private static final String TAG = "WildEditText";
@@ -16,14 +14,16 @@ public class WildEditTextWilder implements ViewBuilder {
        editText = new EditText(ctx);
     }
 
+    @Override
     public void setAttribute(String key, String value) {
+
         switch (key) {
             case "inputType":
                 editText.setInputType(Integer.parseInt(value));
                 break;
             case "ems":
                 try {
-                    editText.setEms(Integer.getInteger(value));
+                    editText.setEms(Integer.parseInt(value));
                 } catch (NullPointerException e) {
                     Log.e(TAG, e.getMessage());
                 }

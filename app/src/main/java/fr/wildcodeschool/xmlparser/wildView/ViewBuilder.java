@@ -1,4 +1,4 @@
-package fr.wildcodeschool.xmlparser;
+package fr.wildcodeschool.xmlparser.wildView;
 
 import android.os.Build;
 import android.view.View;
@@ -7,12 +7,14 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.util.HashMap;
 
+import fr.wildcodeschool.xmlparser.LayoutManager;
+
 public interface ViewBuilder {
 
 
     default void parseXmlNode(XmlPullParser pParser) {
         HashMap<String, String> items;
-        items = LayoutManager.setLayoutParams(getBuildView(), pParser);
+        items = LayoutManager.setLayoutParams(this.getBuildView(), pParser);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
 
             // This is a loop on a HashMap without lambda expression
@@ -21,12 +23,12 @@ public interface ViewBuilder {
             }
         } else {
             // This is a loop on a HashMap with lambda expression
-            items.forEach((key, value)->this.setAttribute(key, value));
+            items.forEach( this::setAttribute );
         }
     }
 
-    public void setAttribute(String key, String value);
+    void setAttribute(String key, String value);
 
-    public View getBuildView();
+    View getBuildView();
 
 }
