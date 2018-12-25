@@ -5,7 +5,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 
-public class WildButtonBuilder implements ViewBuilder {
+public class WildButtonBuilder implements WildViewBuilder {
 
     // Log TAG definition
     private static final String TAG = "WildButton";

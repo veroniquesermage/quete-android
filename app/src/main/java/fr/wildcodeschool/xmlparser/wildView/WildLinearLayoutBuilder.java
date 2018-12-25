@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class WildLinearLayoutBuilder implements ViewBuilder {
+public class WildLinearLayoutBuilder implements WildViewBuilder {
 
     // Log TAG definition
     private static final String TAG = "WildLinearLayout";

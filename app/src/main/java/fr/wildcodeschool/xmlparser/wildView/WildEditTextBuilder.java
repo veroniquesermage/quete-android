@@ -1,17 +1,19 @@
 package fr.wildcodeschool.xmlparser.wildView;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class WildEditTextWilder implements ViewBuilder {
+public class WildEditTextBuilder implements WildViewBuilder {
 
     private static final String TAG = "WildEditText";
-    private EditText editText;
+    private AppCompatEditText editText;
 
-    public WildEditTextWilder(Context ctx) {
-       editText = new EditText(ctx);
+    public WildEditTextBuilder(Context ctx) {
+       editText = new AppCompatEditText(ctx);
     }
 
     @Override
@@ -19,7 +21,7 @@ public class WildEditTextWilder implements ViewBuilder {
 
         switch (key) {
             case "inputType":
-                editText.setInputType(Integer.parseInt(value));
+                this.setInputType(value);
                 break;
             case "ems":
                 try {
@@ -39,6 +41,17 @@ public class WildEditTextWilder implements ViewBuilder {
                 break;
             default:
                 Log.i(TAG, "Unknown Attribute ["+key+"]");
+                break;
+        }
+    }
+
+    private void setInputType(String pInputType) {
+        switch (pInputType) {
+            case "textPersonName":
+                editText.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+                break;
+            default:
+                // Log it
                 break;
         }
     }

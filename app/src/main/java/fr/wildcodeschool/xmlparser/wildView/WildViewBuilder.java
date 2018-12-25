@@ -9,7 +9,11 @@ import java.util.HashMap;
 
 import fr.wildcodeschool.xmlparser.LayoutManager;
 
-public interface ViewBuilder {
+public interface WildViewBuilder {
+
+    void setAttribute(String key, String value);
+
+    View getBuildView();
 
 
     default void parseXmlNode(XmlPullParser pParser) {
@@ -27,8 +31,6 @@ public interface ViewBuilder {
         }
     }
 
-    void setAttribute(String key, String value);
 
-    View getBuildView();
 
 }

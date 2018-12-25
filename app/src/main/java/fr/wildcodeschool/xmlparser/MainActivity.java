@@ -1,8 +1,8 @@
 package fr.wildcodeschool.xmlparser;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import org.xmlpull.v1.XmlPullParserException;
