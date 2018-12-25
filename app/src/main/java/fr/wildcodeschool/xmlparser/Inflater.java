@@ -75,7 +75,7 @@ public class Inflater {
 //              }
                     lParentView.addView(viewBuilder.getBuildView());
                     if (viewBuilder instanceof WildLinearLayoutBuilder) {
-                        lParentView = ((WildLinearLayoutBuilder) viewBuilder).getLayout();
+                        lParentView = (ViewGroup) viewBuilder.getBuildView();
                     }
                 } else if (eventType == XmlPullParser.END_TAG) {
                     switch (parser.getName()) {
