@@ -10,6 +10,9 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import fr.wildcodeschool.xmlparser.wildView.WildCheckboxBuilder;
+import fr.wildcodeschool.xmlparser.wildView.WildSpaceBuilder;
+import fr.wildcodeschool.xmlparser.wildView.WildTextViewBuilder;
 import fr.wildcodeschool.xmlparser.wildView.WildViewBuilder;
 import fr.wildcodeschool.xmlparser.wildView.WildButtonBuilder;
 import fr.wildcodeschool.xmlparser.wildView.WildEditTextBuilder;
@@ -57,12 +60,14 @@ public class Inflater {
                     case "Button":
                         wildViewBuilder = new WildButtonBuilder( ctx );
                         break;
-//          case "TextView":
-//
-//          case "CheckBox":
-//
-//          case "Space":
-//
+                    case "TextView":
+                        wildViewBuilder = new WildTextViewBuilder(ctx);
+                        break;
+                    case "CheckBox":
+                        wildViewBuilder = new WildCheckboxBuilder(ctx);
+                        break;
+                    case "Space":
+                        wildViewBuilder = new WildSpaceBuilder(ctx);
                     default:
                         break;
                 }
